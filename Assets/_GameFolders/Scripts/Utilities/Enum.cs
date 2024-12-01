@@ -3,6 +3,8 @@
     public enum AnimationState
     {
         Idle = 0,
-        Run = 1
+        Run = 1,
+        AttackEnd = 2,
+        Attack = 3
     }
 }

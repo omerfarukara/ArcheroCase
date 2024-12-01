@@ -6,26 +6,19 @@ namespace _GameFolders.Scripts
     {
         private Animation _animation;
 
-        private AnimationState _animationState;
-
-        public AnimationState AnimationState
-        {
-            get => _animationState;
-            set
-            {
-                _animationState = value;
-                SetAnimation(value.ToString());
-            }
-        }
-
         private void Awake()
         {
             _animation = GetComponent<Animation>();
         }
 
-        private void SetAnimation(string animationName)
+        public void PlayAnimation(AnimationState state)
         {
-            _animation.Play(animationName);
+            _animation.Play(state.ToString());
+        }
+
+        public float GetAnimationLength(AnimationState state)
+        {
+            return _animation[state.ToString()].length;
         }
     }
 }

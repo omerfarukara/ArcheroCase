@@ -1,24 +1,11 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace _GameFolders.Scripts
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : BaseCharacter
     {
-        [Header("[-- Data --]")]
-        [SerializeField] private BaseCharacterData playerData;
-
-
-        [Header("[-- Animation --]")]
-        [SerializeField] private AnimationController animationController;
-
-        private BaseCharacter _character;
         private UIManager _uiManager;
-        
-
-        private void Awake()
-        {
-            _character = new BaseCharacter(playerData, transform,animationController);
-        }
 
         private void Start()
         {
@@ -27,14 +14,26 @@ namespace _GameFolders.Scripts
 
         private void Update()
         {
-            _character.Move(_uiManager.GetDirection());
+            if (!IsAttack)
+            {
+                Character.Move(_uiManager.GetDirection());
+            }
 
             SetAnimationState();
         }
 
+
         private void SetAnimationState()
         {
-            animationController.AnimationState = _uiManager.GetDirection().magnitude == 0 ? AnimationState.Idle : AnimationState.Run;
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                PlayAnimation(AnimationState.Attack).Forget();
+            }
+            else
+            {
+                PlayAnimation(_uiManager.GetDirection().magnitude == 0 ? AnimationState.Idle : AnimationState.Run).Forget();
+            }
         }
+        
     }
 }
