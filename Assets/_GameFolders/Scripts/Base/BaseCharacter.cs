@@ -6,7 +6,7 @@ namespace _GameFolders.Scripts
     public class BaseCharacter : MonoBehaviour
     {
         [Header("[-- Data --]")] [SerializeField]
-        private BaseCharacterData playerData;
+        private PlayerData playerData;
 
         [Header("[-- Animation --]")] [SerializeField]
         private AnimationController animationController;
