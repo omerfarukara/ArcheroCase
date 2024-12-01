@@ -4,23 +4,37 @@ namespace _GameFolders.Scripts
 {
     public class PlayerController : MonoBehaviour
     {
+        [Header("[-- Data --]")]
         [SerializeField] private BaseCharacterData playerData;
 
+
+        [Header("[-- Animation --]")]
+        [SerializeField] private AnimationController animationController;
+
         private BaseCharacter _character;
+        private UIManager _uiManager;
+        
 
         private void Awake()
         {
-            _character = new BaseCharacter(playerData, transform);
+            _character = new BaseCharacter(playerData, transform,animationController);
+        }
+
+        private void Start()
+        {
+            _uiManager = UIManager.Instance;
         }
 
         private void Update()
         {
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
+            _character.Move(_uiManager.GetDirection());
 
-            Vector3 direction = new Vector3(horizontal, 0f, vertical);
+            SetAnimationState();
+        }
 
-            _character.Move(direction);
+        private void SetAnimationState()
+        {
+            animationController.AnimationState = _uiManager.GetDirection().magnitude == 0 ? AnimationState.Idle : AnimationState.Run;
         }
     }
 }

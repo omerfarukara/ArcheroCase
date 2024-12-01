@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace _GameFolders.Scripts
 {
-    public class UIManager : MonoBehaviour
+    [DefaultExecutionOrder(-10)]
+    public class UIManager : MonoSingleton<UIManager>
     {
         [Header("[-- Joystick --]")]
         [SerializeField] private Joystick joystick;
