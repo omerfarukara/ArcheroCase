@@ -5618,5 +5618,7 @@ MonoBehaviour:
   onEnableDelay: 0
   onEnableEase: 30
   selectedFrames:
-  - {fileID: 2119873828724324824}
-  - {fileID: 6843636732139332129}
+  - {fileID: 3142570108800812517}
+  - {fileID: 325058930955259546}
+  selectedColor: {r: 0.52399206, g: 1, b: 0.48584908, a: 1}
+  notSelectedColor: {r: 1, g: 1, b: 1, a: 1}

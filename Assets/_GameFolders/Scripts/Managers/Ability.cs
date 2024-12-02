@@ -7,20 +7,24 @@ namespace _GameFolders.Scripts
 {
     public class Ability : MonoBehaviour
     {
-        [Header("[-- Data --]")]
-        [SerializeField] private ScriptableObject abilityScriptableObject;
+        [Header("[-- Data --]")] [SerializeField]
+        private ScriptableObject abilityScriptableObject;
 
-        [Header("[-- Button --]")]
-        [SerializeField] private Button abilityButton;
+        [Header("[-- Button --]")] [SerializeField]
+        private Button abilityButton;
 
-        [Header("[-- DoTween --]")]
-        [SerializeField] private float onEnableTweenValue;
+        [Header("[-- DoTween --]")] [SerializeField]
+        private float onEnableTweenValue;
+
         [SerializeField] private float onEnableTweenDuration;
         [SerializeField] private float onEnableDelay;
         [SerializeField] private Ease onEnableEase;
 
-        [Header("[-- UI --]")]
-        [SerializeField] private List<Outline> selectedFrames;
+        [Header("[-- UI --]")] [SerializeField]
+        private List<Image> selectedFrames;
+
+        [SerializeField] private Color selectedColor;
+        [SerializeField] private Color notSelectedColor;
 
         private Tween _tween;
         private RectTransform _rectTransform;
@@ -91,11 +95,11 @@ namespace _GameFolders.Scripts
         private void UpdateSelectedFrame()
         {
             bool isActive = GameManager.Instance.AbilityManager.IsActiveAbility(_ability);
-            foreach (Outline outline in selectedFrames)
+            foreach (Image iImage in selectedFrames)
             {
-                if (outline != null)
+                if (iImage != null)
                 {
-                    outline.effectColor = isActive ? Color.red : Color.black;
+                    iImage.color = isActive ? selectedColor : notSelectedColor;
                 }
             }
         }
