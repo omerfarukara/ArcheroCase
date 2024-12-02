@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace _GameFolders.Scripts
 {
-    public class BaseDummy : MonoBehaviour, IDummy, IDamageable
+    public class BaseDummy : MonoBehaviour, IDamageable
     {
         [Header("[-- Data --]")] [SerializeField]
         private EnemyData enemyData;
@@ -22,6 +22,9 @@ namespace _GameFolders.Scripts
         [SerializeField] private Color orange;
         [SerializeField] private Color red;
 
+        private float _healthPercentage;
+        
+
         private float _health;
 
         public float Health
@@ -34,20 +37,14 @@ namespace _GameFolders.Scripts
             }
         }
 
-        private float _healthPercentage;
-
-        private void OnEnable()
-        {
-            HealthInit();
-            UpdateHealthColor();
-        }
-
+        
         public void Initialize(Vector3 position)
         {
             transform.position = position;
+            
+            HealthInit();
+            UpdateHealthColor();
         }
-
-
 
         private void Update()
         {
@@ -57,18 +54,13 @@ namespace _GameFolders.Scripts
             }
         }
 
-        private void HealthInit()
-        {
-            Health = enemyData.Health;
-        }
 
         public void TakeDamage(int damageValue)
         {
             if (Health <= 0) return;
 
             Health -= damageValue;
-
-
+            
             hpSlider.DOValue(_healthPercentage, 0.5f).SetEase(Ease.OutCubic).OnComplete(() =>
             {
                 if (Health <= 0)
@@ -81,6 +73,10 @@ namespace _GameFolders.Scripts
             UpdateHealthColor();
         }
 
+        private void HealthInit()
+        {
+            Health = enemyData.Health;
+        }
 
         private void UpdateHealthColor()
         {

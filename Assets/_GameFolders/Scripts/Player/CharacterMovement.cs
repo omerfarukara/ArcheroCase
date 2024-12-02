@@ -8,6 +8,7 @@ namespace _GameFolders.Scripts
         private readonly Transform _transform;
         private readonly Rigidbody _rb;
 
+
         public CharacterMovement(PlayerData baseCharacterData, Transform transform, Rigidbody rb)
         {
             _playerData = baseCharacterData;

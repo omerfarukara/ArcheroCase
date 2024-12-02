@@ -17,10 +17,14 @@ namespace _GameFolders.Scripts
         [SerializeField] private Vector2 spawnAreaMax;
         [SerializeField] private float minSpawnDistance = 2f;
 
-        private readonly List<BaseDummy> _dummies = new();
+        private List<BaseDummy> _dummies = new();
+        public List<BaseDummy> Dummies => _dummies;
 
         private GameManager _gameManager;
         
+        private KdTree _kdTree;
+        public KdTree KdTree => _kdTree;
+
         private void OnEnable()
         {
             GameEventManager.OnKillEnemy += OnDummyKilled;
@@ -31,6 +35,9 @@ namespace _GameFolders.Scripts
             _gameManager = GameManager.Instance;
             
             InitializeDummies();
+            
+            _kdTree = new KdTree();
+            _kdTree.Build(_dummies);
         }
 
         private void OnDisable()
@@ -89,6 +96,7 @@ namespace _GameFolders.Scripts
         private void OnDummyKilled(BaseDummy baseDummy)
         {
             _dummies.Remove(baseDummy);
+            _kdTree.Build(_dummies);
             
             Destroy(baseDummy.gameObject);
             

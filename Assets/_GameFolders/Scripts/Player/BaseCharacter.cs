@@ -9,18 +9,16 @@ namespace _GameFolders.Scripts
         private PlayerData playerData;
 
         [Header("[-- Animation --]")] [SerializeField]
-        private AnimationController animationController;
-
+        protected AnimationController animationController;
 
         private Rigidbody _rb;
-
 
         private bool _isAttack;
         protected bool IsAttack => _isAttack;
 
-
         protected CharacterMovement Character;
 
+        protected MoveState MoveState;
 
         private void Awake()
         {
@@ -28,30 +26,51 @@ namespace _GameFolders.Scripts
             Character = new CharacterMovement(playerData, transform, _rb);
         }
 
-        protected async UniTask PlayAnimation(AnimationState animationState)
+
+
+        protected async UniTask PlayAnimation(PlayingAnimationState playingAnimationState)
         {
             if (_isAttack) return;
 
-            if (animationState == AnimationState.Attack)
+            if (playingAnimationState == PlayingAnimationState.Attack)
             {
                 _isAttack = true;
             }
 
-            await PlaySingleAnimation(animationState);
+            await PlaySingleAnimation(playingAnimationState);
 
-            if (animationState == AnimationState.Attack)
+            if (playingAnimationState == PlayingAnimationState.Attack)
             {
-                await PlaySingleAnimation(AnimationState.AttackEnd);
+                await PlaySingleAnimation(PlayingAnimationState.AttackEnd);
                 _isAttack = false;
             }
         }
 
-        private async UniTask PlaySingleAnimation(AnimationState animationState)
+        private async UniTask PlaySingleAnimation(PlayingAnimationState playingAnimationState)
         {
-            animationController.PlayAnimation(animationState);
+            
+            animationController.PlayAnimation(playingAnimationState);
 
-            float animationLength = animationController.GetAnimationLength(animationState);
-            await UniTask.Delay((int)(animationLength * 1000));
+            float animationLength = animationController.GetAnimationLength(playingAnimationState);
+            float elapsedTime = 0;
+
+            while (elapsedTime < animationLength)
+            {
+                if (GameManager.Instance.GameState == GameState.Paused)
+                {
+                    await UniTask.WaitUntil(() => GameManager.Instance.GameState == GameState.Playing);
+                    animationController.ResumeAnimation();
+                }
+
+                elapsedTime += Time.deltaTime;
+
+                if (!animationController.IsAnimationPlaying(playingAnimationState))
+                {
+                    break;
+                }
+
+                await UniTask.Yield();
+            }
         }
     }
 }
