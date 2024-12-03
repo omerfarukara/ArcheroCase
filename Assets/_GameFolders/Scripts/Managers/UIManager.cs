@@ -31,5 +31,10 @@ namespace _GameFolders.Scripts
         {
             return new Vector3(joystick.Horizontal, 0, joystick.Vertical);
         }
+
+        public bool IsMove()
+        {
+            return GetDirection().magnitude == 0;
+        }
     }
 }
