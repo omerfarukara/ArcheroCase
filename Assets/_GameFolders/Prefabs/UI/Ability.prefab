@@ -5613,10 +5613,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityScriptableObject: {fileID: 0}
   abilityButton: {fileID: 6853175606437908523}
-  onEnableTweenValue: -50
-  onEnableTweenDuration: 0.75
-  onEnableDelay: 0
-  onEnableEase: 30
+  initializeTweenValue: -50
+  initializeTweenDuration: 1
+  initializeDelay: 0
+  initializeEase: 30
+  closeTweenValue: 200
+  closeTweenDuration: 0.5
+  closeDelay: 0
+  closeEase: 1
   selectedFrames:
   - {fileID: 3142570108800812517}
   - {fileID: 325058930955259546}

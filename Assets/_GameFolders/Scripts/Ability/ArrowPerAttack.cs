@@ -2,26 +2,26 @@
 
 namespace _GameFolders.Scripts
 {
-    [CreateAssetMenu(fileName = "ArrowBounce", menuName = "Ability/ArrowBounce")]
-    public class ArrowBounce : ScriptableObject, IAbility
+    [CreateAssetMenu(fileName = "DoubleArrow", menuName = "Ability/DoubleArrow")]
+    public class ArrowPerAttack : ScriptableObject, IAbility
     {
         [SerializeField] private AbilityType abilityType;
+     
+        [SerializeField] private int arrowCountPerAttack;
 
-        [SerializeField] private int arrowBounceCount;
-        
         public void Init(AbilityManager abilityManager)
         {
-            abilityManager.ArrowBounceCount = arrowBounceCount;
+            abilityManager.ArrowCountPerAttack = arrowCountPerAttack;
         }
 
         public void Active(AbilityManager abilityManager)
         {
-            abilityManager.ArrowBounceActive = true;
+            abilityManager.ExtraArrowActive = true;
         }
 
         public void DeActive(AbilityManager abilityManager)
         {
-            abilityManager.ArrowBounceActive = false;
+            abilityManager.ExtraArrowActive = false;
         }
 
         public AbilityType GetAbilityType()

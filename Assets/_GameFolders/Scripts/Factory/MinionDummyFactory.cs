@@ -9,9 +9,7 @@ namespace _GameFolders.Scripts
         
         public override BaseDummy CreateDummy(Vector3 position)
         {
-            MinionDummy minionDummy = Instantiate(minionDummyPrefab,transform);
-            minionDummy.Initialize(position);
-
+            MinionDummy minionDummy = ObjectPool.Instance.Get<MinionDummy>(position);
             return minionDummy;
         }
     }

@@ -8,9 +8,7 @@ namespace _GameFolders.Scripts
 
         public override BaseDummy CreateDummy(Vector3 position)
         {
-            WarriorDummy warriorDummy = Instantiate(warriorDummyPrefab, transform);
-            warriorDummy.Initialize(position);
-
+            WarriorDummy warriorDummy = ObjectPool.Instance.Get<WarriorDummy>(position);
             return warriorDummy;
         }
     }

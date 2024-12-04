@@ -25,12 +25,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746232075976299679}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2107121456625883151}
+  m_Father: {fileID: 9186711516514843215}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -144,14 +144,13 @@ GameObject:
   m_Component:
   - component: {fileID: 9186711516514843215}
   - component: {fileID: 6987108451085884601}
-  - component: {fileID: 7366956606152950161}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9186711516514843215
 RectTransform:
   m_ObjectHideFlags: 0
@@ -163,14 +162,16 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2091414574143604708}
+  - {fileID: 7929779843025636898}
   m_Father: {fileID: 2107121456625883151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 274}
-  m_Pivot: {x: 0.5, y: 1}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6987108451085884601
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -179,36 +180,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761322866043844087}
   m_CullTransparentMesh: 1
---- !u!114 &7366956606152950161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761322866043844087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8509804}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2485865134070963803
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +331,81 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4955845147701364191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7929779843025636898}
+  - component: {fileID: 1384937270825405721}
+  - component: {fileID: 2331349557374741925}
+  m_Layer: 0
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7929779843025636898
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955845147701364191}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9186711516514843215}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 274}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!222 &1384937270825405721
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955845147701364191}
+  m_CullTransparentMesh: 1
+--- !u!114 &2331349557374741925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955845147701364191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 2
 --- !u!1 &5739331321364359110
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,8 +577,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   joystick: {fileID: 2906597019072662395}
-  abilityPanel: {fileID: 6869282192001013168}
+  abilityBackgroundPanel: {fileID: 1761322866043844087}
   abilityButton: {fileID: 9051601411496078650}
+  abilities:
+  - {fileID: 5588993179832659762}
+  - {fileID: 8856523942890253581}
+  - {fileID: 1033959348239277092}
+  - {fileID: 6695595696646254363}
+  - {fileID: 1614295861240630339}
+  abilityInitializeTweenValue: -50
+  abilityInitializeTweenDuration: 1
+  abilityInitializeEase: 30
 --- !u!1 &6428008775326931528
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2107121456625883151
 RectTransform:
   m_ObjectHideFlags: 0
@@ -606,7 +661,6 @@ RectTransform:
   - {fileID: 6581568038510121505}
   - {fileID: 712898057488900382}
   - {fileID: 4857150092230738502}
-  - {fileID: 2091414574143604708}
   m_Father: {fileID: 5726276570840356264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -821,7 +875,15 @@ PrefabInstance:
     m_TransformParent: {fileID: 2107121456625883151}
     m_Modifications:
     - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: closeDelay
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: onEnableDelay
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: initializeDelay
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
@@ -942,6 +1004,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8322144151835762813, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.80126953
+      objectReference: {fileID: 0}
     - target: {fileID: 8799543506885682358, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: m_Name
       value: ' Button Burn Damage'
@@ -955,6 +1021,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+--- !u!114 &1033959348239277092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+  m_PrefabInstance: {fileID: 1004095171625936074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf683c3a92f84f44b291749732fc33fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6581568038510121505 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6249077083919038187, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
@@ -970,6 +1047,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: onEnableDelay
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: initializeDelay
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
@@ -1090,6 +1171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8322144151835762813, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.80126953
+      objectReference: {fileID: 0}
     - target: {fileID: 8799543506885682358, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: m_Name
       value: ' Button Rage Mode'
@@ -1103,6 +1188,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+--- !u!114 &1614295861240630339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+  m_PrefabInstance: {fileID: 1572106163710620845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf683c3a92f84f44b291749732fc33fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4857150092230738502 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6249077083919038187, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
@@ -1116,6 +1212,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2107121456625883151}
     m_Modifications:
+    - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: closeDelay
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: abilityScriptableObject
       value: 
@@ -1152,7 +1252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3646517309817247620, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 12.6
+      value: 12.599976
       objectReference: {fileID: 0}
     - target: {fileID: 4424213616030535674, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: m_SortingLayer
@@ -1234,6 +1334,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8322144151835762813, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.80126953
+      objectReference: {fileID: 0}
     - target: {fileID: 8799543506885682358, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: m_Name
       value: ' Button Arrow Bounce'
@@ -1252,6 +1356,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6249077083919038187, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
   m_PrefabInstance: {fileID: 5631197312883382236}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5588993179832659762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+  m_PrefabInstance: {fileID: 5631197312883382236}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf683c3a92f84f44b291749732fc33fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6427895612756604282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1438,7 +1553,15 @@ PrefabInstance:
     m_TransformParent: {fileID: 2107121456625883151}
     m_Modifications:
     - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: closeDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: onEnableDelay
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: initializeDelay
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
@@ -1559,6 +1682,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8322144151835762813, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.80126953
+      objectReference: {fileID: 0}
     - target: {fileID: 8799543506885682358, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: m_Name
       value: ' Button Arrow Count Per Attack'
@@ -1577,6 +1704,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6249077083919038187, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
   m_PrefabInstance: {fileID: 6871815174474831861}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6695595696646254363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+  m_PrefabInstance: {fileID: 6871815174474831861}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf683c3a92f84f44b291749732fc33fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8745619029298435555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1586,13 +1724,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 2107121456625883151}
     m_Modifications:
     - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: closeDelay
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: onEnableDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: initializeDelay
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: abilityScriptableObject
       value: 
-      objectReference: {fileID: 11400000, guid: 52ec8d71704963b4fb0a40cb1c0560e9, type: 2}
+      objectReference: {fileID: 11400000, guid: 2df0911ad74f90b458c2e63109bf5c6d, type: 2}
     - target: {fileID: 570849063051812306, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: abilityScriptableObject
       value: 
@@ -1707,6 +1853,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8322144151835762813, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.80126953
+      objectReference: {fileID: 0}
     - target: {fileID: 8799543506885682358, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
       propertyPath: m_Name
       value: ' Button Attack Speed Boost'
@@ -1725,3 +1875,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6249077083919038187, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
   m_PrefabInstance: {fileID: 8745619029298435555}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8856523942890253581 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 267436075470682350, guid: 1da0aa60a724ec3468de4f9f14e60604, type: 3}
+  m_PrefabInstance: {fileID: 8745619029298435555}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf683c3a92f84f44b291749732fc33fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -16,5 +16,5 @@ MonoBehaviour:
   arrowBounceCountMultiplier: 2
   burnDamageMultiplier: 1
   burnDurationMultiplier: 2
-  attackSpeedMultiplier: 4
+  attackSpeedMultiplier: 2
   abilityType: 4

@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _GameFolders.Scripts
@@ -6,7 +7,7 @@ namespace _GameFolders.Scripts
     public class BaseCharacter : MonoBehaviour
     {
         [Header("[-- Data --]")] [SerializeField]
-        private PlayerData playerData;
+        private CharacterData characterData;
 
         [Header("[-- Animation --]")] [SerializeField]
         protected AnimationController animationController;
@@ -14,7 +15,6 @@ namespace _GameFolders.Scripts
         private Rigidbody _rb;
 
         private bool _isAttack;
-        protected bool IsAttack => _isAttack;
 
         protected CharacterMovement Character;
 
@@ -23,12 +23,11 @@ namespace _GameFolders.Scripts
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
-            Character = new CharacterMovement(playerData, transform, _rb);
+            Character = new CharacterMovement(characterData, transform, _rb);
         }
 
 
-
-        protected async UniTask PlayAnimation(PlayingAnimationState playingAnimationState)
+        protected async UniTask PlayAnimation(PlayingAnimationState playingAnimationState, Action attackEnd = null)
         {
             if (_isAttack) return;
 
@@ -41,6 +40,11 @@ namespace _GameFolders.Scripts
 
             if (playingAnimationState == PlayingAnimationState.Attack)
             {
+                if (MoveState == MoveState.NotMoving)
+                {
+                    attackEnd?.Invoke();
+                }
+
                 await PlaySingleAnimation(PlayingAnimationState.AttackEnd);
                 _isAttack = false;
             }
@@ -48,7 +52,6 @@ namespace _GameFolders.Scripts
 
         private async UniTask PlaySingleAnimation(PlayingAnimationState playingAnimationState)
         {
-            
             animationController.PlayAnimation(playingAnimationState);
 
             float animationLength = animationController.GetAnimationLength(playingAnimationState);

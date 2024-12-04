@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5b9d340ede4c17b2a9e59ed8a09732, type: 3}
-  m_Name: Burn Damage
+  m_Script: {fileID: 11500000, guid: 0badb651b3b8487e86735ba50ff89dd5, type: 3}
+  m_Name: CharacterData
   m_EditorClassIdentifier: 
-  abilityType: 3
-  defaultBurnDamage: 5
-  defaultBurnDuration: 3
+  health: 0
+  moveSpeed: 2
+  rotationSpeed: 1000

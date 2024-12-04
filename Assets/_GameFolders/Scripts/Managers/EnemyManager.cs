@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using _GameFolders.Scripts.Factory;
-using _GameFolders.Scripts.Interfaces;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,15 +14,13 @@ namespace _GameFolders.Scripts
         [SerializeField] private int initialDummyCount = 5;
         [SerializeField] private Vector2 spawnAreaMin;
         [SerializeField] private Vector2 spawnAreaMax;
-        [SerializeField] private float minSpawnDistance = 2f;
+        [Range(0,2)][SerializeField] private float minSpawnDistance = 2f;
 
         private List<BaseDummy> _dummies = new();
         public List<BaseDummy> Dummies => _dummies;
 
         private GameManager _gameManager;
         
-        private KdTree _kdTree;
-        public KdTree KdTree => _kdTree;
 
         private void OnEnable()
         {
@@ -33,11 +30,8 @@ namespace _GameFolders.Scripts
         private void Start()
         {
             _gameManager = GameManager.Instance;
-            
+
             InitializeDummies();
-            
-            _kdTree = new KdTree();
-            _kdTree.Build(_dummies);
         }
 
         private void OnDisable()
@@ -64,7 +58,7 @@ namespace _GameFolders.Scripts
 
             DummyFactory dummyFactory = factories[Random.Range(0, factories.Length)];
             BaseDummy dummy = dummyFactory.CreateDummy(spawnPosition);
-            
+
             _dummies.Add(dummy);
         }
 
@@ -82,7 +76,7 @@ namespace _GameFolders.Scripts
                 return false;
             }
             
-            foreach (var dummy in _dummies)
+            foreach (BaseDummy dummy in _dummies)
             {
                 if (Vector3.Distance(dummy.transform.position, position) < minSpawnDistance)
                 {
@@ -96,9 +90,6 @@ namespace _GameFolders.Scripts
         private void OnDummyKilled(BaseDummy baseDummy)
         {
             _dummies.Remove(baseDummy);
-            _kdTree.Build(_dummies);
-            
-            Destroy(baseDummy.gameObject);
             
             SpawnDummy();
         }

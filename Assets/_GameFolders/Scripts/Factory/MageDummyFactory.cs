@@ -9,9 +9,7 @@ namespace _GameFolders.Scripts
         
         public override BaseDummy CreateDummy(Vector3 position)
         {
-            MageDummy mageDummy = Instantiate(mageDummyPrefab,transform);
-            mageDummy.Initialize(position);
-
+            MageDummy mageDummy = ObjectPool.Instance.Get<MageDummy>(position);
             return mageDummy;
         }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +10,12 @@ namespace _GameFolders.Scripts
         [Header("[-- Joystick --]")] [SerializeField]
         private Joystick joystick;
 
-        [Header("[-- Ability --]")]
-        [SerializeField] private GameObject abilityPanel;
+        [Header("[-- Ability --]")] [SerializeField]
+        private GameObject abilityBackgroundPanel;
+
         [SerializeField] private Button abilityButton;
+        [SerializeField] private List<Ability> abilities;
+
 
         protected override void Awake()
         {
@@ -21,9 +25,27 @@ namespace _GameFolders.Scripts
 
         private void AbilityProcess()
         {
-            abilityPanel.SetActive(!abilityPanel.activeInHierarchy);
-            
-            GameEventManager.OnSetGameState?.Invoke(GameManager.Instance.GameState == GameState.Playing ? GameState.Paused : GameState.Playing);
+            if (GameManager.Instance.GameState == GameState.Paused)
+            {
+                abilityBackgroundPanel.SetActive(false);
+                
+                foreach (Ability ability in abilities)
+                {
+                    ability.CloseTween();
+                }
+
+                GameEventManager.OnSetGameState?.Invoke(GameState.Playing);
+            }
+            else
+            {
+                abilityBackgroundPanel.SetActive(true);
+                foreach (Ability ability in abilities)
+                {
+                    ability.InitializeTween();
+                }
+
+                GameEventManager.OnSetGameState?.Invoke(GameState.Paused);
+            }
         }
 
 

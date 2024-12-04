@@ -1,5 +1,3 @@
-using System;
-
 namespace _GameFolders.Scripts
 {
     public class AbilityManager
@@ -8,13 +6,13 @@ namespace _GameFolders.Scripts
         public int ArrowBounceCount { get; set; }
         public float BurnDamage { get; set; }
         public float BurnDuration { get; set; }
-        public float AttackSpeedMultiplier { get; set; }
+        public float AttackSpeedTime { get; set; }
         
         
         public bool ExtraArrowActive { get; set; }
         public bool ArrowBounceActive { get; set; }
         public bool BurnActive { get; set; }
-        public bool ExtraAttackSpeedActive { get; set; }
+        public bool ExtraAttackSpeedTimeActive { get; set; }
         public bool RageModeActive { get; set; }
         
         
@@ -23,15 +21,15 @@ namespace _GameFolders.Scripts
         {
             switch (ability)
             {
-                case Scripts.ArrowBounce:
+                case ArrowBounce:
                     return ArrowBounceActive;
-                case Scripts.ArrowCountPerAttack:
+                case ArrowPerAttack:
                     return ExtraArrowActive;
-                case Scripts.AttackSpeedBoost:
-                    return ExtraAttackSpeedActive;
-                case Scripts.BurnDamage:
+                case AttackSpeed:
+                    return ExtraAttackSpeedTimeActive;
+                case BurningArrow:
                     return BurnActive;
-                case Scripts.RageMode:
+                case RageMode:
                     return RageModeActive;
                 default:
                     return false;

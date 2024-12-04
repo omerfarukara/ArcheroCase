@@ -251,10 +251,10 @@ Light:
     m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.489
     m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NormalBias: 0
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -400,7 +400,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.8
+  orthographic size: 5.8029
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -639,34 +639,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4387083531970073502, guid: 44707a2e4b7103349ba5fdfc094d9129, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387083531970073502, guid: 44707a2e4b7103349ba5fdfc094d9129, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387083531970073502, guid: 44707a2e4b7103349ba5fdfc094d9129, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387083531970073502, guid: 44707a2e4b7103349ba5fdfc094d9129, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387083531970073502, guid: 44707a2e4b7103349ba5fdfc094d9129, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387083531970073502, guid: 44707a2e4b7103349ba5fdfc094d9129, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387083531970073502, guid: 44707a2e4b7103349ba5fdfc094d9129, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387083531970073502, guid: 44707a2e4b7103349ba5fdfc094d9129, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -764,6 +736,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  findNearestSystem: 0
+  arrowBounce: {fileID: 11400000, guid: c7245cb2c6783194b93d7ac5645865ed, type: 2}
+  arrowPerAttack: {fileID: 11400000, guid: afda110eb9d93bb4c8729b5b67f52936, type: 2}
+  burningArrow: {fileID: 11400000, guid: 4a3725313efd570438905e264d4cfa46, type: 2}
+  attackSpeed: {fileID: 11400000, guid: 2df0911ad74f90b458c2e63109bf5c6d, type: 2}
+  rageMode: {fileID: 11400000, guid: 673b0af2042c05f4a85b9a9a332d1fba, type: 2}
 --- !u!1 &1799087485
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +890,10 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   prefabMappings:
   - prefab: {fileID: 9213816842615481623, guid: 7d66c74ef7b28bb45892aea80c0aa817, type: 3}
+  - prefab: {fileID: 7669455875771977706, guid: 8597649b2cecc234b9dfdf5e9b874bd3, type: 3}
+  - prefab: {fileID: 6793312218076187298, guid: 5afddc0837b6a874c864fbab9cee15df, type: 3}
+  - prefab: {fileID: 8499611004558555076, guid: e519a28f286636d4db1e9486b7ca1ec6, type: 3}
+  - prefab: {fileID: 976223863376068591, guid: 02b4d47bfb472444b97251586722fe34, type: 3}
 --- !u!4 &2140805608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1979157570658324423, guid: 7a8aae505355c454fad1f7b84844c54e, type: 3}
@@ -1064,8 +1046,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1799087486}
-  - {fileID: 874367618}
   - {fileID: 1383299499}
+  - {fileID: 874367618}
   - {fileID: 1409086859}
   - {fileID: 1563442740}
   - {fileID: 1921430198}

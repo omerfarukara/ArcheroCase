@@ -4,14 +4,14 @@ namespace _GameFolders.Scripts
 {
     public class CharacterMovement
     {
-        private readonly PlayerData _playerData;
+        private readonly CharacterData _characterData;
         private readonly Transform _transform;
         private readonly Rigidbody _rb;
 
 
-        public CharacterMovement(PlayerData baseCharacterData, Transform transform, Rigidbody rb)
+        public CharacterMovement(CharacterData baseCharacterData, Transform transform, Rigidbody rb)
         {
-            _playerData = baseCharacterData;
+            _characterData = baseCharacterData;
             _transform = transform;
             _rb = rb;
         }
@@ -25,7 +25,7 @@ namespace _GameFolders.Scripts
                 return;
             }
 
-            float speed = _playerData.MoveSpeed;
+            float speed = _characterData.MoveSpeed;
 
             _transform.position += direction * (speed * Time.deltaTime);
 
@@ -38,7 +38,7 @@ namespace _GameFolders.Scripts
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-            _transform.rotation = Quaternion.RotateTowards(_transform.rotation, targetRotation, _playerData.RotationSpeed * Time.deltaTime);
+            _transform.rotation = Quaternion.RotateTowards(_transform.rotation, targetRotation, _characterData.RotationSpeed * Time.deltaTime);
         }
     }
 }

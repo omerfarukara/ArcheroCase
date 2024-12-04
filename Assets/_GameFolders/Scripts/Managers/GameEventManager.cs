@@ -6,6 +6,7 @@ namespace _GameFolders.Scripts
     {
         public static Action<BaseDummy> OnKillEnemy { get; set; }
         public static Action<GameState> OnSetGameState { get; set; }
-        public static Action<AbilityType> SelectedAbility { get; set; }
+        public static Action<AbilityType> Activated { get; set; }
+        public static Action<AbilityType> DeActivated { get; set; }
     }
 }

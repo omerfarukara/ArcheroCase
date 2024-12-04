@@ -29,27 +29,27 @@ namespace _GameFolders.Scripts
                 }
             }
         }
-
-
-        public T Get<T>() where T : PoolingObject
+        
+        public T Get<T>(Vector3 spawnPoint) where T : PoolingObject
         {
-            Type type = typeof(T);
+            Type targetType = typeof(T);
 
-            if (_pools.ContainsKey(type) && _pools[type].Count > 0)
+            if (_pools.ContainsKey(targetType) && _pools[targetType].Count > 0)
             {
-                PoolingObject obj = _pools[type].Dequeue();
-                obj.gameObject.SetActive(true); 
-                obj.Initialize(); 
+                PoolingObject obj = _pools[targetType].Dequeue();
+                if(obj == null) return null;
+                obj.gameObject.SetActive(true);
+                obj.Initialize(spawnPoint);
                 return (T)obj;
             }
 
-            string prefabName = typeof(T).Name;
-            
+            string prefabName = targetType.Name;
+
             if (_prefabDictionary.TryGetValue(prefabName, out GameObject prefab))
             {
-                GameObject instance = Instantiate(prefab, transform);
+                GameObject instance = Instantiate(prefab);
                 PoolingObject newObj = instance.GetComponent<PoolingObject>();
-                newObj.Initialize();
+                newObj.Initialize(spawnPoint);
                 return (T)newObj;
             }
 
@@ -65,8 +65,8 @@ namespace _GameFolders.Scripts
                 _pools[type] = new Queue<PoolingObject>();
             }
 
-            obj.gameObject.SetActive(false);
             _pools[type].Enqueue(obj);
+            obj.gameObject.SetActive(false);
         }
     }
 }

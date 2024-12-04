@@ -18,7 +18,7 @@
     {
         ArrowBounce = 0,
         ArrowCountPerAttack = 1,
-        AttackSpeedBoost = 2,
+        AttackSpeed = 2,
         BurnDamage = 3,
         RageMode = 4
     }
@@ -27,5 +27,11 @@
     {
         NotMoving = 0,
         Moving = 1
+    }
+
+    public enum FindNearestSystem
+    {
+        MySystem = 0,
+        Linq = 1,
     }
 }

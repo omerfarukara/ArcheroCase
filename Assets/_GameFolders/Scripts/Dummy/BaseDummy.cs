@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using _GameFolders.Scripts.Interfaces;
 using DG.Tweening;
 using UnityEngine;
@@ -5,7 +7,7 @@ using UnityEngine.UI;
 
 namespace _GameFolders.Scripts
 {
-    public class BaseDummy : MonoBehaviour, IDamageable
+    public class BaseDummy : PoolingObject, IDamageable
     {
         [Header("[-- Data --]")] [SerializeField]
         private EnemyData enemyData;
@@ -23,9 +25,10 @@ namespace _GameFolders.Scripts
         [SerializeField] private Color red;
 
         private float _healthPercentage;
-        
 
         private float _health;
+
+        private float _burnTimer;
 
         public float Health
         {
@@ -37,20 +40,38 @@ namespace _GameFolders.Scripts
             }
         }
 
-        
-        public void Initialize(Vector3 position)
+        public List<BurningArrowElement> burnArrows = new();
+
+        public override void Initialize(Vector3 spawnPosition)
         {
-            transform.position = position;
-            
+            transform.position = spawnPosition;
             HealthInit();
-            UpdateHealthColor();
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (!GameManager.Instance.IsPlayable()) return;
+
+            for (int i = burnArrows.Count - 1; i >= 0; i--)
             {
-                TakeDamage(25);
+                BurningArrowElement burningArrow = burnArrows[i];
+                if (burningArrow.takenDamageTimeCount < burningArrow.burnDuration)
+                {
+                    if (burningArrow.burnTimer <= 1)
+                    {
+                        burningArrow.burnTimer += Time.deltaTime;
+                        if (burningArrow.burnTimer > 1)
+                        {
+                            burningArrow.takenDamageTimeCount++;
+                            TakeDamage(burningArrow.burnDamage);
+                            burningArrow.burnTimer = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    burnArrows.RemoveAt(i);
+                }
             }
         }
 
@@ -60,13 +81,17 @@ namespace _GameFolders.Scripts
             if (Health <= 0) return;
 
             Health -= damageValue;
-            
+
+            if (Health <= 0)
+            {
+                GameEventManager.OnKillEnemy?.Invoke(this);
+            }
+
             hpSlider.DOValue(_healthPercentage, 0.5f).SetEase(Ease.OutCubic).OnComplete(() =>
             {
                 if (Health <= 0)
                 {
-                    Debug.Log("Down!", gameObject);
-                    GameEventManager.OnKillEnemy?.Invoke(this);
+                    gameObject.SetActive(false);
                 }
             });
 
@@ -76,6 +101,8 @@ namespace _GameFolders.Scripts
         private void HealthInit()
         {
             Health = enemyData.Health;
+            UpdateHealthColor();
+            hpSlider.DOValue(_healthPercentage, 0.05f);
         }
 
         private void UpdateHealthColor()
@@ -85,10 +112,36 @@ namespace _GameFolders.Scripts
                 > 0.75f => green,
                 > 0.5f => yellow,
                 > 0.25f => orange,
-                > 0 => red,
-                _ => Color.black
+                _ => red
             };
             fillImage.DOColor(targetColor, 0.5f).SetEase(Ease.OutCubic);
+        }
+
+        public override void Close()
+        {
+            burnArrows.Clear();
+        }
+
+        private void OnDisable()
+        {
+            Close();
+        }
+    }
+
+
+    [Serializable]
+    public class BurningArrowElement
+    {
+        public float burnDuration;
+        public int burnDamage;
+        public float burnTimer;
+
+        public int takenDamageTimeCount;
+
+        public BurningArrowElement(float burnDuration, int burnDamage)
+        {
+            this.burnDuration = burnDuration;
+            this.burnDamage = burnDamage;
         }
     }
 }

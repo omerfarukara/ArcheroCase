@@ -13,12 +13,12 @@ namespace _GameFolders.Scripts
         [Header("[-- Button --]")] [SerializeField]
         private Button abilityButton;
 
-        [Header("[-- DoTween --]")] [SerializeField]
-        private float onEnableTweenValue;
+        [Header("[-- Initialize DoTween --]")] [SerializeField]
+        private float initializeTweenValue;
 
-        [SerializeField] private float onEnableTweenDuration;
-        [SerializeField] private float onEnableDelay;
-        [SerializeField] private Ease onEnableEase;
+        [SerializeField] private float initializeTweenDuration;
+        [SerializeField] private float initializeDelay;
+        [SerializeField] private Ease initializeEase;
 
         [Header("[-- UI --]")] [SerializeField]
         private List<Image> selectedFrames;
@@ -29,6 +29,8 @@ namespace _GameFolders.Scripts
         private Tween _tween;
         private RectTransform _rectTransform;
         private IAbility _ability;
+        private GameManager _gameManager;
+        
         private Vector2 _defaultPos;
 
         private void Awake()
@@ -39,9 +41,8 @@ namespace _GameFolders.Scripts
 
         private void OnEnable()
         {
-            InitializeTween();
             InitializeAbility();
-            GameEventManager.SelectedAbility += OnSelectedAbility;
+            GameEventManager.Activated += OnSelectedAbility;
         }
 
         private void Start()
@@ -58,14 +59,15 @@ namespace _GameFolders.Scripts
 
         private void ToggleAbility()
         {
-            if (GameManager.Instance.AbilityManager.IsActiveAbility(_ability))
+            if (_gameManager.AbilityManager.IsActiveAbility(_ability))
             {
-                GameManager.Instance.AbilityManager.DeActive(_ability);
+                _gameManager.AbilityManager.DeActive(_ability);
+                GameEventManager.DeActivated?.Invoke(_ability.GetAbilityType());
             }
             else
             {
-                GameManager.Instance.AbilityManager.Active(_ability);
-                GameEventManager.SelectedAbility?.Invoke(_ability.GetAbilityType());
+                _gameManager.AbilityManager.Active(_ability);
+                GameEventManager.Activated?.Invoke(_ability.GetAbilityType());
             }
 
             UpdateSelectedFrame();
@@ -78,23 +80,18 @@ namespace _GameFolders.Scripts
 
         private void AbilityInit()
         {
-            GameManager.Instance.AbilityManager?.Init(_ability);
+            _gameManager = GameManager.Instance;
+            _gameManager.AbilityManager?.Init(_ability);
         }
 
         private void OnSelectedAbility(AbilityType abilityType)
         {
-            if (abilityType == AbilityType.RageMode || _ability.GetAbilityType() == AbilityType.RageMode) return;
-
-            if (abilityType != _ability.GetAbilityType())
-            {
-                GameManager.Instance.AbilityManager.DeActive(_ability);
-                UpdateSelectedFrame();
-            }
+            UpdateSelectedFrame();
         }
 
         private void UpdateSelectedFrame()
         {
-            bool isActive = GameManager.Instance.AbilityManager.IsActiveAbility(_ability);
+            bool isActive = _gameManager.AbilityManager.IsActiveAbility(_ability);
             foreach (Image iImage in selectedFrames)
             {
                 if (iImage != null)
@@ -104,19 +101,26 @@ namespace _GameFolders.Scripts
             }
         }
 
-        private void InitializeTween()
+        public void InitializeTween()
         {
             _tween = _rectTransform
-                .DOAnchorPosY(onEnableTweenValue, onEnableTweenDuration)
-                .SetDelay(onEnableDelay)
-                .SetEase(onEnableEase);
+                .DOAnchorPosY(initializeTweenValue, initializeTweenDuration)
+                .SetDelay(initializeDelay)
+                .SetEase(initializeEase).OnComplete(() => { abilityButton.interactable = true; });
+        }
+
+        public void CloseTween()
+        {
+            _tween?.Kill();
+            
+            abilityButton.interactable = false;
+            _rectTransform.anchoredPosition = _defaultPos;
         }
 
         private void OnDisable()
         {
             _tween?.Kill();
-            _rectTransform.anchoredPosition = _defaultPos;
-            GameEventManager.SelectedAbility -= OnSelectedAbility;
+            GameEventManager.Activated -= OnSelectedAbility;
         }
     }
 }

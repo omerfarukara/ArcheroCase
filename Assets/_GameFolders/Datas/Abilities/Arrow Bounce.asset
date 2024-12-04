@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Arrow Bounce
   m_EditorClassIdentifier: 
   arrowBounceCount: 1
+  abilityType: 0

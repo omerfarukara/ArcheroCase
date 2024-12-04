@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -6,9 +7,19 @@ namespace _GameFolders.Scripts
 {
     public class CharacterController : BaseCharacter
     {
+        [Header("[-- Arrow --]")]
+        [SerializeField] private Transform spawnTransform;
+
+
+        private BaseDummy _nearestDummy;
+
         private UIManager _uiManager;
         private GameManager _gameManager;
         private EnemyManager _enemyManager;
+        private CancellationTokenSource _cancellationTokenSource;
+
+        private bool _hasAttackedOnce;
+        private float _currentAttackTimer;
 
         private void Start()
         {
@@ -23,37 +34,125 @@ namespace _GameFolders.Scripts
             if (!_gameManager.IsPlayable()) return;
 
             Character.Move(_uiManager.GetDirection());
-            
             MoveState = _uiManager.IsMove() ? MoveState.NotMoving : MoveState.Moving;
+            
+            _nearestDummy = GameHelper.FindNearestDummy(_enemyManager.Dummies,transform.position);
 
-            if (IsAttack)
+            if (Input.GetKeyDown(KeyCode.X))
             {
-                BaseDummy nearestDummy = _enemyManager.KdTree.FindNearest(transform.position);
-                // BaseDummy nearestDummy = _enemyManager.Dummies.OrderBy(d => Vector3.Distance(transform.position, d.transform.position)).FirstOrDefault();
-                // BaseDummy nearestDummy = GameHelper.FindNearestDummy(transform.position);
-                Debug.Log($"En yakın dummy: {nearestDummy.name}", nearestDummy.gameObject);
-                
-                
+                Attack().Forget();
             }
 
-            SetAnimationState();
+            switch (MoveState)
+            {
+                case MoveState.NotMoving:
+                {
+                    PlayAnimation(PlayingAnimationState.Idle).Forget();
+
+                    if (!_hasAttackedOnce)
+                    {
+                        Attack().Forget();
+                        _hasAttackedOnce = true;
+                    }
+
+                    float attackSpeed = GameHelper.GetDivisionCount
+                        (_gameManager.AbilityManager.AttackSpeedTime, _gameManager.RageMode.AttackSpeedMultiplier);
+
+                    if (_currentAttackTimer < attackSpeed)
+                    {
+                        _currentAttackTimer += Time.deltaTime;
+
+                        if (_currentAttackTimer >= attackSpeed)
+                        {
+                            Attack().Forget();
+                        }
+                    }
+                    else
+                    {
+                        _currentAttackTimer = 0;
+                    }
+
+                    break;
+                }
+                case MoveState.Moving:
+                {
+                    _hasAttackedOnce = false;
+                    _currentAttackTimer = 0;
+
+                    if (!animationController.IsAnimationPlaying(PlayingAnimationState.Run))
+                    {
+                        animationController.StopAnimation();
+                    }
+
+                    PlayAnimation(PlayingAnimationState.Run).Forget();
+
+                    break;
+                }
+            }
         }
 
 
-        private void SetAnimationState()
+        private async UniTask Attack()
         {
-            if (MoveState == MoveState.NotMoving)
+            _cancellationTokenSource = new();
+
+            if (_nearestDummy != null)
             {
-                PlayAnimation(PlayingAnimationState.Attack).Forget();
-            }
-            else
-            {
-                if (!animationController.IsAnimationPlaying(PlayingAnimationState.Run))
+                transform.LookAt(_nearestDummy.transform);
+
+                await PlayAnimation(PlayingAnimationState.Attack, async () =>
                 {
-                    animationController.StopAnimation();
-                    PlayAnimation(PlayingAnimationState.Run).Forget();
-                }
+                    if (!_cancellationTokenSource.Token.IsCancellationRequested)
+                    {
+                        if (_gameManager.AbilityManager.ExtraArrowActive)
+                        {
+                            int arrowCountPerAttack = (int)GameHelper.GetMultiplierAbilityCount
+                                (_gameManager.AbilityManager.ArrowCountPerAttack, _gameManager.RageMode.ArrowCountPerMultiplier);
+
+                            for (int i = 0; i < arrowCountPerAttack; i++)
+                            {
+                                while (_gameManager.GameState == GameState.Paused)
+                                {
+                                    await UniTask.Yield(_cancellationTokenSource.Token);
+                                }
+
+                                
+                                BaseArrow baseArrow = ObjectPool.Instance.Get<BaseArrow>(spawnTransform.position);
+                                if (baseArrow != null)
+                                {
+                                    baseArrow.Throw(_nearestDummy.transform).Forget();
+                                }
+                        
+                                try
+                                {
+                                    await UniTask.Delay(TimeSpan.FromSeconds(
+                                        0.1f
+                                    ), cancellationToken: _cancellationTokenSource.Token);
+                                }
+                                catch (OperationCanceledException)
+                                {
+                                    Debug.Log("Delay iptal");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            while (_gameManager.GameState == GameState.Paused)
+                            {
+                                await UniTask.Yield(_cancellationTokenSource.Token);
+                            }
+
+                            BaseArrow baseArrow = ObjectPool.Instance.Get<BaseArrow>(spawnTransform.position);
+                            baseArrow.Throw(_nearestDummy.transform).Forget();
+                        }
+                    }
+                });
             }
+        }
+
+        private void OnApplicationQuit()
+        {
+            _cancellationTokenSource?.Cancel();
         }
     }
 }
