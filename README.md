@@ -8,19 +8,24 @@ Archero Case Study projesini başarıyla tamamlamış bulunmaktayım. Bu proje s
 Öncelikle, oyun ayarları ve projeyi nereden oynayabileceğiniz hakkında bilgi vermek isterim.
 
 İçerikleri anlatmadan önce projede oyun ayarları ile nerden oynayabilirsiniz biraz bunun hakkında bilgi vermek istiyorum.
-   1 - (Assets) 
+   - (Assets)
         -  (_GameFolders) 
             - (Datas)
                - **[Character Data]** -> Karakterimizin MoveSpeed, RotationSpeed ve her ne kadar kullanmasakta Health değerleri bulunuyor.
                   - (Abilities) -> Yeteneklerimiz bulunuyor.
+                    
                      - **[Arrow Bounce]** -> Arrow Bounce Count değerimiz var. Bu değer yetenek açık olduğunda kaç kere başka düşmanlara sekeceğini belirliyor.
+                       
                      - **[Arrow Count Per Attack]** -> İsmindende anlayacağımız üzere attack başı kaç tane ok atacağımızı belirliyoruz.
+                       
                      - **[Attack Speed Boost]** -> Burada DefaultAttackSpeed ve AttackSpeedMultiplier değişkenlerimiz var.
                        Multiplier değişkeni yetenek aktiften Mevcut Attack Speed'i kaç ile çarpacağını belirliyor.
+                    
                      - **[BurnDamage]** -> İçerisinde BurnDamage ve BurnDuration değerleri mevcut. Okumuzun çarptığı dummy'e  kaç saniye boyunca her saniyede ne kadar damage vurmasını belirliyoruz.
+                       
                      - **[Rage Mode]** -> Burada bütün yeteneklerin çarpanları var. Rage mode aktif olduğunda yetenekleri kaç ile çarpmamız gerektiğini belirliyoruz.
                     
-   2 - Hiyerarşi'de **[Managers] -> Game Manager** üzerinde FindNearestSystem üzerinden en yakındaki dummy'i hangi yol ile bulacağını belirleyebilirsiniz.
+   - Hiyerarşi'de **[Managers] -> Game Manager** üzerinde FindNearestSystem üzerinden en yakındaki dummy'i hangi yol ile bulacağını belirleyebilirsiniz.
 
 **Kullanılan Design Patternler**
 - Strategy Pattern
