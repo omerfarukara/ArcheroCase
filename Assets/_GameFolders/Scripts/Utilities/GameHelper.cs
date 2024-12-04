@@ -119,7 +119,6 @@ namespace _GameFolders.Scripts
             return nearestDummy;
         }
 
-
         public static BaseDummy FindSelectedSystemDummy(List<BaseDummy> dummies,Vector3 myPosition)
         {
             switch (GameManager.Instance.FindNearestSystem)
@@ -133,11 +132,9 @@ namespace _GameFolders.Scripts
             }
         }
 
-
         public static float GetMultiplierAbilityCount(float currentValue, float rageMultiplier)
         {
             float value = 0;
-
             if (GameManager.Instance.AbilityManager.RageModeActive)
             {
                 value = currentValue * rageMultiplier;
@@ -146,14 +143,12 @@ namespace _GameFolders.Scripts
             {
                 value = currentValue;
             }
-
             return value;
         }
 
         public static float GetDivisionCount(float currentValue, float rageMultiplier)
         {
             float value = 0;
-
             if (GameManager.Instance.AbilityManager.RageModeActive)
             {
                 value = currentValue / rageMultiplier;
@@ -162,7 +157,6 @@ namespace _GameFolders.Scripts
             {
                 value = currentValue;
             }
-
             return value;
         }
     }

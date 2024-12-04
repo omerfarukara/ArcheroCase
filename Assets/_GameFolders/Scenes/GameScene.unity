@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669abb6521d84f0d9b837ee4fb6087ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warriorDummyPrefab: {fileID: 2039625921708220961, guid: 02b4d47bfb472444b97251586722fe34, type: 3}
 --- !u!1 &356005584
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dde0402ddd247279eeec0066712371e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rogueDummyPrefab: {fileID: 3050567163350843804, guid: e519a28f286636d4db1e9486b7ca1ec6, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +473,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8fb25cf1e2a4ff0b160e4ce5a6c7bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionDummyPrefab: {fileID: -3359821502173863719, guid: 5afddc0837b6a874c864fbab9cee15df, type: 3}
 --- !u!224 &1261991326 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6993320342320454901, guid: c90068455f09a0144bfce28801953e3e, type: 3}
@@ -943,7 +940,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d2d9488a1a49adbc771f8ec23654da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mageDummyPrefab: {fileID: 1225374596667199336, guid: 8597649b2cecc234b9dfdf5e9b874bd3, type: 3}
 --- !u!1001 &9182955230282880421
 PrefabInstance:
   m_ObjectHideFlags: 0

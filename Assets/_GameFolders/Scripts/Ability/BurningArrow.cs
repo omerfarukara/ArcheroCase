@@ -7,13 +7,13 @@ namespace _GameFolders.Scripts
     {
         [SerializeField] private AbilityType abilityType;
         
-        [SerializeField] private float defaultBurnDamage;
-        [SerializeField] private float defaultBurnDuration;
+        [SerializeField] private float burnDamage;
+        [SerializeField] private float burnDuration;
         
         public void Init(AbilityManager abilityManager)
         {
-            abilityManager.BurnDamage = defaultBurnDamage;
-            abilityManager.BurnDuration = defaultBurnDuration;
+            abilityManager.BurnDamage = burnDamage;
+            abilityManager.BurnDuration = burnDuration;
         }
 
         public void Active(AbilityManager abilityManager)

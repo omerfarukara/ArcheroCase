@@ -28,7 +28,6 @@ namespace _GameFolders.Scripts
             float speed = _characterData.MoveSpeed;
 
             _transform.position += direction * (speed * Time.deltaTime);
-
             LookAtMovementDirection(direction);
         }
 
@@ -37,7 +36,6 @@ namespace _GameFolders.Scripts
             if (direction.magnitude == 0) return;
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-
             _transform.rotation = Quaternion.RotateTowards(_transform.rotation, targetRotation, _characterData.RotationSpeed * Time.deltaTime);
         }
     }

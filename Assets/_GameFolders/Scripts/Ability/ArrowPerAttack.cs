@@ -6,7 +6,6 @@ namespace _GameFolders.Scripts
     public class ArrowPerAttack : ScriptableObject, IAbility
     {
         [SerializeField] private AbilityType abilityType;
-     
         [SerializeField] private int arrowCountPerAttack;
 
         public void Init(AbilityManager abilityManager)

@@ -9,25 +9,21 @@ namespace _GameFolders.Scripts
 {
     public class BaseDummy : PoolingObject, IDamageable
     {
-        [Header("[-- Data --]")] [SerializeField]
-        private EnemyData enemyData;
+        [Header("[-- Data --]")]
+        [SerializeField] private EnemyData enemyData;
 
-        [Header("[-- Hp --]")] [SerializeField]
-        private Slider hpSlider;
-
+        [Header("[-- Hp --]")]
+        [SerializeField] private Slider hpSlider;
         [SerializeField] private Image fillImage;
 
-        [Header("[-- Hp Colors --]")] [SerializeField]
-        private Color green;
-
+        [Header("[-- Hp Colors --]")]
+        [SerializeField] private Color green;
         [SerializeField] private Color yellow;
         [SerializeField] private Color orange;
         [SerializeField] private Color red;
 
         private float _healthPercentage;
-
         private float _health;
-
         private float _burnTimer;
 
         public float Health
@@ -127,15 +123,13 @@ namespace _GameFolders.Scripts
             Close();
         }
     }
-
-
+    
     [Serializable]
     public class BurningArrowElement
     {
         public float burnDuration;
         public int burnDamage;
         public float burnTimer;
-
         public int takenDamageTimeCount;
 
         public BurningArrowElement(float burnDuration, int burnDamage)

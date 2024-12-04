@@ -6,26 +6,24 @@ namespace _GameFolders.Scripts
 {
     public class BaseCharacter : MonoBehaviour
     {
-        [Header("[-- Data --]")] [SerializeField]
-        private CharacterData characterData;
+        [Header("[-- Data --]")]
+        [SerializeField] private CharacterData characterData;
 
-        [Header("[-- Animation --]")] [SerializeField]
-        protected AnimationController animationController;
+        [Header("[-- Animation --]")]
+        [SerializeField] protected AnimationController animationController;
 
         private Rigidbody _rb;
-
-        private bool _isAttack;
-
         protected CharacterMovement Character;
-
+        
         protected MoveState MoveState;
+        
+        private bool _isAttack;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
             Character = new CharacterMovement(characterData, transform, _rb);
         }
-
 
         protected async UniTask PlayAnimation(PlayingAnimationState playingAnimationState, Action attackEnd = null)
         {
@@ -44,7 +42,6 @@ namespace _GameFolders.Scripts
                 {
                     attackEnd?.Invoke();
                 }
-
                 await PlaySingleAnimation(PlayingAnimationState.AttackEnd);
                 _isAttack = false;
             }

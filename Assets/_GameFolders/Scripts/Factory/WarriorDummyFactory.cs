@@ -4,8 +4,6 @@ namespace _GameFolders.Scripts
 {
     public class WarriorDummyFactory : DummyFactory
     {
-        [SerializeField] private WarriorDummy warriorDummyPrefab;
-
         public override BaseDummy CreateDummy(Vector3 position)
         {
             WarriorDummy warriorDummy = ObjectPool.Instance.Get<WarriorDummy>(position);

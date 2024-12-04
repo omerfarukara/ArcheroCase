@@ -6,11 +6,10 @@ namespace _GameFolders.Scripts
     {
         [SerializeField] private FindNearestSystem findNearestSystem;
         public FindNearestSystem FindNearestSystem => findNearestSystem;
+        
         [Space]
 
-
         #region Ability Scriptables
-
         [SerializeField] private ArrowBounce arrowBounce;
         [SerializeField] private ArrowPerAttack arrowPerAttack;
         [SerializeField] private BurningArrow burningArrow;
@@ -22,21 +21,15 @@ namespace _GameFolders.Scripts
         public BurningArrow BurningArrow => burningArrow;
         public AttackSpeed AttackSpeed => attackSpeed;
         public RageMode RageMode => rageMode;
-
         #endregion
-        
         
         private AbilityManager _abilityManager;
         public AbilityManager AbilityManager => _abilityManager; 
-        
-        
         
         public CharacterController CharacterController { get; set; }
 
         public GameState GameState { get; set; }
        
-        
-        
         protected override void Awake()
         {
             base.Awake();

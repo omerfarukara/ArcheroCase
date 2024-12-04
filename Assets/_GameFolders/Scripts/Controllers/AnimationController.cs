@@ -72,7 +72,6 @@ namespace _GameFolders.Scripts
             }
         }
 
-
         private void OnSetGameState(GameState state)
         {
             if (state == GameState.Paused)
@@ -93,7 +92,6 @@ namespace _GameFolders.Scripts
             }
         }
 
-
         public void StopAnimation()
         {
             if (_currentAnimationState != null)
@@ -105,7 +103,6 @@ namespace _GameFolders.Scripts
 
             _currentAnimationState = null;
         }
-
 
         public void PlayAnimation(PlayingAnimationState state)
         {

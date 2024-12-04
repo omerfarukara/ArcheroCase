@@ -16,11 +16,10 @@ namespace _GameFolders.Scripts
         [SerializeField] private Vector2 spawnAreaMax;
         [Range(0,2)][SerializeField] private float minSpawnDistance = 2f;
 
-        private List<BaseDummy> _dummies = new();
+        private readonly List<BaseDummy> _dummies = new();
         public List<BaseDummy> Dummies => _dummies;
 
         private GameManager _gameManager;
-        
 
         private void OnEnable()
         {

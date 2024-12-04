@@ -20,7 +20,6 @@ namespace _GameFolders.Scripts
 
         [SerializeField] private AbilityType abilityType;
 
-
         public void Init(AbilityManager abilityManager)
         {
 
@@ -35,7 +34,6 @@ namespace _GameFolders.Scripts
         {
             abilityManager.RageModeActive = false;
         }
-
 
         public AbilityType GetAbilityType()
         {

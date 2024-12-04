@@ -6,7 +6,6 @@ namespace _GameFolders.Scripts
     public class ArrowBounce : ScriptableObject, IAbility
     {
         [SerializeField] private AbilityType abilityType;
-
         [SerializeField] private int arrowBounceCount;
         
         public void Init(AbilityManager abilityManager)

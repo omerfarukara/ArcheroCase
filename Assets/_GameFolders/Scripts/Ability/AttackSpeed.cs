@@ -7,12 +7,10 @@ namespace _GameFolders.Scripts
     public class AttackSpeed : ScriptableObject, IAbility
     {
         [SerializeField] private AbilityType abilityType;
-
         [SerializeField] private float defaultAttackSpeed;
         [SerializeField] private float attackSpeedMultiplier;
 
         public float AttackSpeedMultiplier => attackSpeedMultiplier;
-        
         
         public void Init(AbilityManager abilityManager)
         {
@@ -22,14 +20,12 @@ namespace _GameFolders.Scripts
         public void Active(AbilityManager abilityManager)
         {
             abilityManager.AttackSpeedTime = defaultAttackSpeed / attackSpeedMultiplier;
-            
             abilityManager.ExtraAttackSpeedTimeActive = true;
         }
 
         public void DeActive(AbilityManager abilityManager)
         {
             abilityManager.AttackSpeedTime = defaultAttackSpeed;
-            
             abilityManager.ExtraAttackSpeedTimeActive = false;
         }
         

@@ -15,8 +15,6 @@ namespace _GameFolders.Scripts
         public bool ExtraAttackSpeedTimeActive { get; set; }
         public bool RageModeActive { get; set; }
         
-        
-
         public bool IsActiveAbility(IAbility ability)
         {
             switch (ability)
@@ -35,8 +33,6 @@ namespace _GameFolders.Scripts
                     return false;
             }
         }
-        
-
 
         public void Init(IAbility ability)
         {

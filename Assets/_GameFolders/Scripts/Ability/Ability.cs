@@ -7,22 +7,20 @@ namespace _GameFolders.Scripts
 {
     public class Ability : MonoBehaviour
     {
-        [Header("[-- Data --]")] [SerializeField]
-        private ScriptableObject abilityScriptableObject;
+        [Header("[-- Data --]")]
+        [SerializeField] private ScriptableObject abilityScriptableObject;
 
-        [Header("[-- Button --]")] [SerializeField]
-        private Button abilityButton;
+        [Header("[-- Button --]")]
+        [SerializeField] private Button abilityButton;
 
-        [Header("[-- Initialize DoTween --]")] [SerializeField]
-        private float initializeTweenValue;
-
+        [Header("[-- Initialize DoTween --]")]
+        [SerializeField] private float initializeTweenValue;
         [SerializeField] private float initializeTweenDuration;
         [SerializeField] private float initializeDelay;
         [SerializeField] private Ease initializeEase;
 
-        [Header("[-- UI --]")] [SerializeField]
-        private List<Image> selectedFrames;
-
+        [Header("[-- UI --]")]
+        [SerializeField] private List<Image> selectedFrames;
         [SerializeField] private Color selectedColor;
         [SerializeField] private Color notSelectedColor;
 

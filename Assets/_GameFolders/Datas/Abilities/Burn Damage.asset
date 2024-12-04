@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Burn Damage
   m_EditorClassIdentifier: 
   abilityType: 3
-  defaultBurnDamage: 5
-  defaultBurnDuration: 3
+  burnDamage: 5
+  burnDuration: 3

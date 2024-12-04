@@ -10,9 +10,7 @@ namespace _GameFolders.Scripts
         [Header("[-- Arrow --]")]
         [SerializeField] private Transform spawnTransform;
 
-
         private BaseDummy _nearestDummy;
-
         private UIManager _uiManager;
         private GameManager _gameManager;
         private EnemyManager _enemyManager;
@@ -33,15 +31,15 @@ namespace _GameFolders.Scripts
         {
             if (!_gameManager.IsPlayable()) return;
 
-            Character.Move(_uiManager.GetDirection());
-            MoveState = _uiManager.IsMove() ? MoveState.NotMoving : MoveState.Moving;
-            
             _nearestDummy = GameHelper.FindNearestDummy(_enemyManager.Dummies,transform.position);
 
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                Attack().Forget();
-            }
+            MoveOrAttack();
+        }
+
+        private void MoveOrAttack()
+        {
+            Character.Move(_uiManager.GetDirection());
+            MoveState = _uiManager.IsMove() ? MoveState.NotMoving : MoveState.Moving;
 
             switch (MoveState)
             {

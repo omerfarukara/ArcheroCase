@@ -7,16 +7,14 @@ namespace _GameFolders.Scripts
     [DefaultExecutionOrder(-10)]
     public class UIManager : MonoSingleton<UIManager>
     {
-        [Header("[-- Joystick --]")] [SerializeField]
-        private Joystick joystick;
+        [Header("[-- Joystick --]")]
+        [SerializeField] private Joystick joystick;
 
-        [Header("[-- Ability --]")] [SerializeField]
-        private GameObject abilityBackgroundPanel;
-
+        [Header("[-- Ability --]")]
+        [SerializeField] private GameObject abilityBackgroundPanel;
         [SerializeField] private Button abilityButton;
         [SerializeField] private List<Ability> abilities;
-
-
+        
         protected override void Awake()
         {
             base.Awake();
@@ -28,12 +26,10 @@ namespace _GameFolders.Scripts
             if (GameManager.Instance.GameState == GameState.Paused)
             {
                 abilityBackgroundPanel.SetActive(false);
-                
                 foreach (Ability ability in abilities)
                 {
                     ability.CloseTween();
                 }
-
                 GameEventManager.OnSetGameState?.Invoke(GameState.Playing);
             }
             else
@@ -43,11 +39,9 @@ namespace _GameFolders.Scripts
                 {
                     ability.InitializeTween();
                 }
-
                 GameEventManager.OnSetGameState?.Invoke(GameState.Paused);
             }
         }
-
 
         public Vector3 GetDirection()
         {

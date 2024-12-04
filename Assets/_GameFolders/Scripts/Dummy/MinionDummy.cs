@@ -6,5 +6,6 @@
         {
             base.Close();
             ObjectPool.Instance.Release(this);
-        }  }
+        }
+    }
 }

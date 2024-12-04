@@ -5,8 +5,6 @@ namespace _GameFolders.Scripts
 {
     public class RogueDummyFactory : DummyFactory
     {
-        [SerializeField] private RogueDummy rogueDummyPrefab;
-        
         public override BaseDummy CreateDummy(Vector3 position)
         {
             RogueDummy rogueDummy = ObjectPool.Instance.Get<RogueDummy>(position);

@@ -32,7 +32,6 @@ namespace _GameFolders.Scripts
             _gameManager = GameManager.Instance;
         }
 
-
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out IDamageable idDamageable))
@@ -55,7 +54,6 @@ namespace _GameFolders.Scripts
             if (_gameManager.AbilityManager.BurnActive)
             {
                 int burnDamage = (int)GameHelper.GetMultiplierAbilityCount(_gameManager.AbilityManager.BurnDamage, _gameManager.RageMode.BurnDamageMultiplier);
-
                 float burnDuration = GameHelper.GetMultiplierAbilityCount(_gameManager.AbilityManager.BurnDuration, _gameManager.RageMode.BurnDurationMultiplier);
 
                 _lastHitDummy.burnArrows.Add(new BurningArrowElement(burnDuration, burnDamage));
@@ -88,7 +86,6 @@ namespace _GameFolders.Scripts
             }
         }
 
-
         private void Update()
         {
             if (!_gameManager.IsPlayable()) return;
@@ -118,7 +115,6 @@ namespace _GameFolders.Scripts
             _lastHitDummy = null;
         }
 
-
         public override void Close()
         {
             _rb.useGravity = false;
@@ -133,15 +129,13 @@ namespace _GameFolders.Scripts
             Close();
         }
 
-
         public async UniTask Throw(Transform target)
         {
             _cancellationTokenSource = new();
-            this._target = target;
+            _target = target;
 
             await GameHelper.LaunchProjectileAsync(transform, _target, gravity, launchAngle, _gameManager, _cancellationTokenSource.Token);
         }
-
 
         private void OnApplicationQuit()
         {
