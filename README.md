@@ -1,7 +1,5 @@
 # ArcheroCase
  
-Saygıdeğer Happy Hour Games Jürisi,
-
 Herkese merhaba!
 
 Archero Case Study projesini başarıyla tamamlamış bulunmaktayım. Bu proje sürecinde yaptıklarımı ve proje içeriğini sizlerle paylaşmaktan mutluluk duyuyorum. 
